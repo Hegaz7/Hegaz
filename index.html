@@ -9,7 +9,6 @@
         :root { --gold: #c5a059; --dark: #000; --white: #ffffff; --gray: #0a0a0a; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--dark); color: var(--white); scroll-behavior: smooth; }
         
-        /* زر تبديل اللغة العالمي */
         .lang-switcher { position: fixed; top: 25px; left: 30px; z-index: 2000; display: flex; gap: 10px; }
         .lang-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; cursor: pointer; font-weight: bold; font-size: 0.8rem; transition: 0.3s; }
         .lang-btn:hover, .lang-btn.active { background: var(--gold); color: #000; }
@@ -17,43 +16,32 @@
         header { border-bottom: 1px solid #1a1a1a; padding: 25px 8%; display: flex; justify-content: center; background: rgba(0,0,0,0.98); position: sticky; top: 0; z-index: 1000; }
         .logo-text { color: var(--gold); font-weight: 800; letter-spacing: 5px; text-decoration: none; font-size: 1.8rem; }
 
-        .hero { height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-bottom: 1px solid #080808; }
+        .hero { height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
         .hero h1 { font-size: 3rem; color: var(--gold); margin: 0; letter-spacing: 8px; text-transform: uppercase; }
         .hero p { font-size: 1.1rem; color: #555; margin-top: 15px; letter-spacing: 3px; }
 
-        /* الأقسام الثلاثة (الخامات) */
         .sectors-section { padding: 60px 8%; }
         .section-title { text-align: center; color: var(--gold); font-size: 1.8rem; margin-bottom: 50px; letter-spacing: 4px; text-transform: uppercase; }
         
         .sectors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .sector-card { background: var(--gray); border: 1px solid #151515; padding: 50px 30px; text-align: center; transition: 0.4s; cursor: pointer; }
-        .sector-card:hover { border-color: var(--gold); transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .sector-card:hover { border-color: var(--gold); transform: translateY(-8px); }
         .sector-card i { font-size: 3rem; color: var(--gold); margin-bottom: 25px; }
-        .sector-card h3 { font-size: 1.5rem; margin-bottom: 15px; letter-spacing: 2px; }
-        .sector-card p { color: #666; font-size: 0.95rem; line-height: 1.6; }
 
-        /* فيديوهات العمليات الحية */
+        /* قسم الفيديوهات (الواجهة الحية) */
         .live-ops { padding: 80px 8%; background: #050505; border-top: 1px solid #111; }
         .video-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .video-item { position: relative; border: 1px solid #111; height: 450px; overflow: hidden; }
-        .video-item video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        .video-badge { position: absolute; top: 25px; right: 25px; background: var(--gold); color: #000; padding: 5px 15px; font-weight: bold; font-size: 0.7rem; letter-spacing: 1px; z-index: 10; }
+        .video-item { position: relative; border: 1px solid #222; height: 450px; overflow: hidden; background: #000; }
+        .video-item video { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+        .video-badge { position: absolute; top: 25px; right: 25px; background: var(--gold); color: #000; padding: 5px 15px; font-weight: bold; font-size: 0.7rem; z-index: 10; }
 
-        /* التواصل الرسمي */
-        .contact-area { padding: 100px 8%; text-align: center; }
-        .email-link { display: inline-block; padding: 22px 60px; border: 2px solid var(--gold); color: var(--gold); text-decoration: none; font-weight: bold; letter-spacing: 3px; font-size: 1.1rem; transition: 0.4s; }
-        .email-link:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.3); }
-
-        /* مودال المعرض */
-        .modal { display: none; position: fixed; z-index: 5000; top: 0; left: 0; width: 100%; height: 100%; background: #000; overflow-y: auto; padding: 60px 20px; }
-        .modal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
-        .modal-grid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border: 1px solid #1a1a1a; transition: 0.3s; }
-        .modal-grid img:hover { border-color: var(--gold); }
-        .close-btn { position: fixed; top: 25px; left: 40px; color: var(--gold); font-size: 45px; cursor: pointer; z-index: 5100; }
+        .contact-area { padding: 80px 8%; text-align: center; }
+        .email-link { display: inline-block; padding: 20px 50px; border: 2px solid var(--gold); color: var(--gold); text-decoration: none; font-weight: bold; letter-spacing: 2px; transition: 0.4s; }
+        .email-link:hover { background: var(--gold); color: #000; }
 
         footer { padding: 50px; text-align: center; color: #222; font-size: 0.8rem; letter-spacing: 5px; border-top: 1px solid #080808; }
         
-        @media (max-width: 768px) { .video-container { grid-template-columns: 1fr; } .video-item { height: 300px; } .hero h1 { font-size: 2rem; } }
+        @media (max-width: 768px) { .video-container { grid-template-columns: 1fr; } .video-item { height: 300px; } }
     </style>
 </head>
 <body>
@@ -75,17 +63,17 @@
 <section class="sectors-section">
     <h2 class="section-title" id="secTitle">قطاعات العمل | SECTORS</h2>
     <div class="sectors-grid">
-        <div class="sector-card" onclick="openGal('exp')">
+        <div class="sector-card">
             <i class="fas fa-ship"></i>
             <h3 id="h-exp">التصدير الدولي</h3>
             <p id="p-exp">سجل شحناتنا الدولية والأسواق التي نغطيها حول العالم.</p>
         </div>
-        <div class="sector-card" onclick="openGal('bales')">
+        <div class="sector-card">
             <i class="fas fa-box"></i>
             <h3 id="h-bales">بالات 25 كجم</h3>
             <p id="p-bales">ألبوم صور خاص بمنتجاتنا بوزن 25 كيلو وجودة التغليف.</p>
         </div>
-        <div class="sector-card" onclick="openGal('store')">
+        <div class="sector-card">
             <i class="fas fa-warehouse"></i>
             <h3 id="h-store">المخازن واللوجستيات</h3>
             <p id="p-store">صور توضح سعة التخزين وكفاءة العمليات الداخلية.</p>
@@ -93,16 +81,25 @@
     </div>
 </section>
 
+<!-- قسم بث حي للعمليات (اللي كان ظاهر فاضي) -->
 <section class="live-ops">
     <h2 class="section-title" id="opsTitle">بث حي للعمليات | LIVE OPS</h2>
     <div class="video-container">
+        <!-- الفيديو الأول: جولة في المخازن -->
         <div class="video-item">
             <div class="video-badge">LIVE: STORAGE</div>
-            <video autoplay muted loop playsinline><source src="storage-hegaz.mp4" type="video/mp4"></video>
+            <video autoplay muted loop playsinline>
+                <!-- استبدل "storage.mp4" باسم ملف الفيديو بتاعك -->
+                <source src="storage.mp4" type="video/mp4">
+            </video>
         </div>
+        <!-- الفيديو الثاني: تحميل الشحنات -->
         <div class="video-item">
             <div class="video-badge">LIVE: LOADING</div>
-            <video autoplay muted loop playsinline><source src="loading-hegaz.mp4" type="video/mp4"></video>
+            <video autoplay muted loop playsinline>
+                <!-- استبدل "loading.mp4" باسم ملف الفيديو بتاعك -->
+                <source src="loading.mp4" type="video/mp4">
+            </video>
         </div>
     </div>
 </section>
@@ -110,13 +107,6 @@
 <section class="contact-area">
     <a href="mailto:info@hegaz-trading.com" class="email-link" id="mailBtn">إرسال بريد إلكتروني | OFFICIAL MAIL</a>
 </section>
-
-<div id="galModal" class="modal">
-    <span class="close-btn" onclick="closeGal()">&times;</span>
-    <div class="modal-grid" id="galContent"></div>
-</div>
-
-<a href="https://api.whatsapp.com/send?phone=201145040429" style="position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; text-decoration: none;"><i class="fab fa-whatsapp"></i></a>
 
 <footer>HEGAZ TRADING &copy; 2026 | DAMIETTA - EGYPT</footer>
 
@@ -136,7 +126,7 @@
             document.getElementById('h-bales').innerText = '25KG Bales';
             document.getElementById('h-store').innerText = 'Logistics & Storage';
             document.getElementById('opsTitle').innerText = 'LIVE OPERATIONS';
-            document.getElementById('mailBtn').innerText = 'OFFICIAL EMAIL INQUIRY';
+            document.getElementById('mailBtn').innerText = 'OFFICIAL MAIL INQUIRY';
         } else {
             html.dir = 'rtl';
             btnAr.classList.add('active'); btnEn.classList.remove('active');
@@ -150,17 +140,6 @@
             document.getElementById('mailBtn').innerText = 'إرسال بريد إلكتروني';
         }
     }
-
-    function openGal(type) {
-        const modal = document.getElementById('galModal');
-        const content = document.getElementById('galContent');
-        modal.style.display = 'block';
-        content.innerHTML = '';
-        let imgs = ['p1.jpg', 'p2.jpg', 'p3.jpg', 'p4.jpg']; // أمثلة
-        imgs.forEach(s => content.innerHTML += `<img src="${s}" loading="lazy">`);
-    }
-
-    function closeGal() { document.getElementById('galModal').style.display = 'none'; }
 </script>
 
 </body>
