@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEGAZ GLOBAL | العمليات والجودة</title>
+    <title>HEGAZ GLOBAL | معرض الوسائط</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #c5a059; --dark: #000; --white: #ffffff; --gray: #111; }
@@ -12,125 +12,115 @@
         header { border-bottom: 1px solid #222; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.95); position: sticky; top: 0; z-index: 1000; }
         .header-logo { color: var(--gold); font-weight: bold; letter-spacing: 4px; text-decoration: none; font-size: 1.5rem; }
 
-        .hero { text-align: center; padding: 60px 5%; background: var(--dark); }
-        .hero img { max-width: 450px; width: 85%; height: auto; margin-bottom: 20px; }
-        .hero h1 { color: var(--gold); font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: 8px; margin: 0; text-transform: uppercase; }
+        .hero { text-align: center; padding: 60px 5%; }
+        .hero img { max-width: 400px; width: 80%; height: auto; margin-bottom: 20px; }
+        .hero h1 { color: var(--gold); font-size: 2.5rem; letter-spacing: 8px; margin: 0; }
 
-        section { padding: 60px 8%; border-top: 1px solid #111; }
+        section { padding: 40px 8%; border-top: 1px solid #111; }
         .section-title { text-align: center; color: var(--gold); letter-spacing: 5px; margin-bottom: 40px; font-size: 1.8rem; text-transform: uppercase; }
 
-        /* الأقسام - العنوان فوق الخانة */
-        .box-label { padding-bottom: 15px; text-align: center; color: var(--gold); font-size: 1.4rem; font-weight: bold; letter-spacing: 2px; }
+        /* --- معرض الصور (نمط ألبوم الهاتف) --- */
+        .photo-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+        .photo-item { aspect-ratio: 1/1; overflow: hidden; cursor: pointer; border: 1px solid #222; position: relative; }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; filter: grayscale(30%); }
+        .photo-item:hover img { transform: scale(1.1); filter: grayscale(0%); border: 1px solid var(--gold); }
 
-        /* قسم الشهادات */
-        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .cert-item { border: 1px solid var(--gold); padding: 30px; background: rgba(197, 160, 89, 0.03); text-align: center; }
-        .cert-item i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
-        .cert-item h3 { margin-top: 10px; font-size: 1.2rem; color: var(--white); }
+        /* --- قسم الفيديوهات --- */
+        .video-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .video-box { display: flex; flex-direction: column; }
+        .video-label { color: var(--gold); padding: 10px 0; font-size: 1.2rem; font-weight: bold; text-align: center; border-bottom: 1px solid #111; margin-bottom: 15px; }
+        .video-wrapper { width: 100%; height: 250px; background: #000; border: 1px solid #222; overflow: hidden; }
+        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* معرض الصور */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .gallery-item { height: 280px; overflow: hidden; border: 1px solid #222; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
-        .gallery-item:hover img { opacity: 1; }
+        /* نافذة تصفح الصور (Modal) */
+        .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); }
+        .modal-content { max-width: 90%; max-height: 80%; margin: auto; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 2px solid var(--gold); }
+        .close-modal { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
-        /* العمليات اللوجستية */
-        .ops-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 50px; }
-        .op-container { display: flex; flex-direction: column; }
-        .media-box { width: 100%; height: 400px; overflow: hidden; background: #000; border: 1px solid #1a1a1a; }
-        .media-box video, .media-box img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* واتساب */
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 9999; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-
-        footer { padding: 50px; text-align: center; border-top: 1px solid #111; color: #444; font-size: 0.8rem; letter-spacing: 3px; }
-        
-        @media (max-width: 768px) {
-            .media-box { height: 300px; }
-            .hero h1 { font-size: 2rem; }
-        }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 999; text-decoration: none; }
+        footer { padding: 40px; text-align: center; color: #444; font-size: 0.8rem; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
 <header>
     <a href="#" class="header-logo">HEGAZ</a>
-    <div style="color: var(--gold); font-size: 0.7rem; letter-spacing: 2px;">GLOBAL LOGISTICS</div>
+    <div style="color: var(--gold); font-size: 0.7rem;">LOGISTICS & QUALITY</div>
 </header>
 
 <div class="hero">
     <img src="hegaz.png" alt="Hegaz Brand">
-    <h1>HEGAZ GROUP</h1>
-    <p>FROM EGYPT TO THE WORLD</p>
+    <h1>GALLERY</h1>
 </div>
 
-<!-- الشهادات -->
+<!-- معرض الصور الذكي -->
 <section>
-    <h2 class="section-title">CERTIFICATIONS | الشهادات</h2>
-    <div class="certs-grid">
-        <div class="cert-item">
-            <i class="fas fa-award"></i>
-            <h3>ISO 9001:2015</h3>
-        </div>
-        <div class="cert-item">
-            <i class="fas fa-shield-alt"></i>
-            <h3>GLOBAL GAP</h3>
-        </div>
-        <div class="cert-item">
-            <i class="fas fa-check-circle"></i>
-            <h3>EXPORT LICENSE</h3>
-        </div>
+    <h2 class="section-title">PHOTO ALBUM | معرض الصور</h2>
+    <div class="photo-gallery">
+        <!-- كرر هذا السطر لكل صورة تملكها (حتى 1000 صورة) -->
+        <div class="photo-item" onclick="openModal(this)"><img src="img1.jpg" alt="Hegaz"></div>
+        <div class="photo-item" onclick="openModal(this)"><img src="img2.jpg" alt="Hegaz"></div>
+        <div class="photo-item" onclick="openModal(this)"><img src="img3.jpg" alt="Hegaz"></div>
+        <div class="photo-item" onclick="openModal(this)"><img src="img4.jpg" alt="Hegaz"></div>
+        <div class="photo-item" onclick="openModal(this)"><img src="img5.jpg" alt="Hegaz"></div>
+        <div class="photo-item" onclick="openModal(this)"><img src="img6.jpg" alt="Hegaz"></div>
+        <!-- أضف المزيد هنا... -->
     </div>
 </section>
 
-<!-- معرض الصور -->
+<!-- قسم الفيديوهات المستقل -->
 <section>
-    <h2 class="section-title">PHOTO GALLERY | معرض الصور</h2>
-    <div class="gallery-grid">
-        <div class="gallery-item"><img src="pic1.jpg" alt="Gallery"></div>
-        <div class="gallery-item"><img src="pic2.jpg" alt="Gallery"></div>
-        <div class="gallery-item"><img src="pic3.jpg" alt="Gallery"></div>
-        <div class="gallery-item"><img src="pic4.jpg" alt="Gallery"></div>
-    </div>
-</section>
-
-<!-- العمليات اللوجستية -->
-<section>
-    <h2 class="section-title">OPERATIONS | العمليات اللوجستية</h2>
-    <div class="ops-grid">
+    <h2 class="section-title">VIDEOS | قسم الفيديوهات</h2>
+    <div class="video-section">
         
-        <!-- جولة المخازن -->
-        <div class="op-container">
-            <div class="box-label">جولة داخل مخازن الشركة</div>
-            <div class="media-box">
-                <video autoplay muted loop playsinline>
+        <div class="video-box">
+            <div class="video-label">جولة داخل مخازن الشركة</div>
+            <div class="video-wrapper">
+                <video controls muted>
                     <source src="storage-video.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
 
-        <!-- تجهيز الشحنات -->
-        <div class="op-container">
-            <div class="box-label">تجهيز الشحنات الدولية</div>
-            <div class="media-box">
-                <img src="warehouse1.jpg" alt="Shipping Logistics">
+        <div class="video-box">
+            <div class="video-label">تجهيز الشحنات الدولية</div>
+            <div class="video-wrapper">
+                <video controls muted>
+                    <source src="shipping-video.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
 
     </div>
 </section>
 
-<div style="text-align: center; padding: 60px 0;">
-    <a href="mailto:info@hegazgroup.com" style="border: 2px solid var(--gold); color: var(--gold); padding: 20px 60px; text-decoration: none; font-weight: bold; letter-spacing: 3px; font-size: 1.2rem;">SEND EMAIL | إرسال بريد إلكتروني</a>
+<!-- نافذة عرض الصورة (تفتح عند الضغط) -->
+<div id="myModal" class="modal">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="imgModal">
 </div>
 
 <a href="https://api.whatsapp.com/send?phone=201145040429" class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
-<footer>
-    HEGAZ GLOBAL HOLDINGS &copy; 2026 | ALL RIGHTS RESERVED
-</footer>
+<footer>HEGAZ GLOBAL &copy; 2026</footer>
+
+<script>
+    function openModal(element) {
+        document.getElementById("myModal").style.display = "block";
+        document.getElementById("imgModal").src = element.getElementsByTagName('img')[0].src;
+    }
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+    // إغلاق النافذة عند الضغط في أي مكان خارج الصورة
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("myModal")) {
+            closeModal();
+        }
+    }
+</script>
 
 </body>
 </html>
