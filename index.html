@@ -1,126 +1,133 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="mainHtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEGAZ GLOBAL | معرض الوسائط</title>
+    <title>HEGAZ GLOBAL | 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #c5a059; --dark: #000; --white: #ffffff; --gray: #111; }
-        body { font-family: 'Times New Roman', serif; margin: 0; background: var(--dark); color: var(--white); scroll-behavior: smooth; overflow-x: hidden; }
+        :root { --gold: #c5a059; --dark: #000; --white: #ffffff; }
+        body { font-family: 'Times New Roman', serif; margin: 0; background: var(--dark); color: var(--white); scroll-behavior: smooth; }
         
-        header { border-bottom: 1px solid #222; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.95); position: sticky; top: 0; z-index: 1000; }
-        .header-logo { color: var(--gold); font-weight: bold; letter-spacing: 4px; text-decoration: none; font-size: 1.5rem; }
+        /* 1. زر تبديل اللغة الأنيق */
+        .lang-switcher { position: fixed; top: 20px; left: 20px; z-index: 2000; }
+        .lang-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .lang-btn:hover { background: var(--gold); color: black; }
 
-        .hero { text-align: center; padding: 60px 5%; }
-        .hero img { max-width: 400px; width: 80%; height: auto; margin-bottom: 20px; }
-        .hero h1 { color: var(--gold); font-size: 2.5rem; letter-spacing: 8px; margin: 0; }
+        header { border-bottom: 1px solid #222; padding: 15px 8%; display: flex; justify-content: center; background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; }
+        .header-logo { color: var(--gold); font-weight: bold; letter-spacing: 5px; text-decoration: none; font-size: 1.6rem; }
 
-        section { padding: 40px 8%; border-top: 1px solid #111; }
-        .section-title { text-align: center; color: var(--gold); letter-spacing: 5px; margin-bottom: 40px; font-size: 1.8rem; text-transform: uppercase; }
+        .hero { text-align: center; padding: 40px 5%; }
+        .hero img { max-width: 350px; width: 80%; margin-bottom: 15px; }
 
-        /* --- معرض الصور (نمط ألبوم الهاتف) --- */
-        .photo-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-        .photo-item { aspect-ratio: 1/1; overflow: hidden; cursor: pointer; border: 1px solid #222; position: relative; }
-        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; filter: grayscale(30%); }
-        .photo-item:hover img { transform: scale(1.1); filter: grayscale(0%); border: 1px solid var(--gold); }
+        /* 5. قسم الشهادات (لبناء الثقة فوراً) */
+        .trust-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px 8%; background: #080808; border-y: 1px solid #111; }
+        .trust-item { text-align: center; color: var(--gold); border: 1px solid #1a1a1a; padding: 15px; }
+        .trust-item i { font-size: 1.5rem; margin-bottom: 10px; display: block; }
 
-        /* --- قسم الفيديوهات --- */
-        .video-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .section-title { text-align: center; color: var(--gold); letter-spacing: 4px; margin: 50px 0 30px; font-size: 1.8rem; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 10px; }
+
+        /* معرض الصور مع خاصية Lazy Loading وكتابة التفاصيل */
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; padding: 0 8%; }
+        .photo-item { position: relative; aspect-ratio: 1/1; border: 1px solid #222; overflow: hidden; cursor: pointer; background: #050505; }
+        /* 2. التحميل الذكي Lazy Loading */
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; opacity: 0.8; }
+        .photo-info { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); color: var(--gold); padding: 8px; text-align: center; font-size: 0.85rem; transform: translateY(100%); transition: 0.3s; }
+        .photo-item:hover .photo-info { transform: translateY(0); }
+        .photo-item:hover img { opacity: 1; transform: scale(1.1); }
+
+        /* فيديوهات الواجهة الحية (في النهاية) */
+        .video-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 40px 8%; background: #050505; }
         .video-box { display: flex; flex-direction: column; }
-        .video-label { color: var(--gold); padding: 10px 0; font-size: 1.2rem; font-weight: bold; text-align: center; border-bottom: 1px solid #111; margin-bottom: 15px; }
-        .video-wrapper { width: 100%; height: 250px; background: #000; border: 1px solid #222; overflow: hidden; }
-        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+        .video-label { color: var(--gold); padding-bottom: 15px; font-size: 1.2rem; font-weight: bold; text-align: center; }
+        .video-frame { width: 100%; height: 400px; background: #000; border: 1px solid #222; overflow: hidden; }
+        .video-frame video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* نافذة تصفح الصور (Modal) */
-        .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); }
-        .modal-content { max-width: 90%; max-height: 80%; margin: auto; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 2px solid var(--gold); }
-        .close-modal { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
-
+        /* نافذة العرض */
+        .modal { display: none; position: fixed; z-index: 10000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); }
+        .modal-content { max-width: 90%; max-height: 80%; margin: auto; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid var(--gold); }
+        
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 999; text-decoration: none; }
-        footer { padding: 40px; text-align: center; color: #444; font-size: 0.8rem; letter-spacing: 2px; }
+        footer { padding: 40px; text-align: center; color: #444; border-top: 1px solid #111; letter-spacing: 2px; font-size: 0.7rem; }
+
+        @media (max-width: 768px) { .video-showcase { grid-template-columns: 1fr; } .video-frame { height: 280px; } }
     </style>
 </head>
 <body>
 
+<div class="lang-switcher">
+    <button class="lang-btn" onclick="switchLang('en')">EN</button>
+    <button class="lang-btn" onclick="switchLang('ar')">AR</button>
+</div>
+
 <header>
-    <a href="#" class="header-logo">HEGAZ</a>
-    <div style="color: var(--gold); font-size: 0.7rem;">LOGISTICS & QUALITY</div>
+    <a href="#" class="header-logo">HEGAZ GLOBAL</a>
 </header>
 
 <div class="hero">
-    <img src="hegaz.png" alt="Hegaz Brand">
-    <h1>GALLERY</h1>
+    <img src="hegaz.png" alt="Logo">
+    <h1 id="heroTitle">HEGAZ GLOBAL COMPANY</h1>
 </div>
 
-<!-- معرض الصور الذكي -->
+<!-- 5. قسم الثقة والشهادات -->
+<div class="trust-bar">
+    <div class="trust-item"><i class="fas fa-award"></i><span class="t-cert">ISO 9001 Certified</span></div>
+    <div class="trust-item"><i class="fas fa-check-circle"></i><span class="t-cert">Global GAP Standards</span></div>
+    <div class="trust-item"><i class="fas fa-ship"></i><span class="t-cert">International Logistics</span></div>
+</div>
+
 <section>
-    <h2 class="section-title">PHOTO ALBUM | معرض الصور</h2>
-    <div class="photo-gallery">
-        <!-- كرر هذا السطر لكل صورة تملكها (حتى 1000 صورة) -->
-        <div class="photo-item" onclick="openModal(this)"><img src="img1.jpg" alt="Hegaz"></div>
-        <div class="photo-item" onclick="openModal(this)"><img src="img2.jpg" alt="Hegaz"></div>
-        <div class="photo-item" onclick="openModal(this)"><img src="img3.jpg" alt="Hegaz"></div>
-        <div class="photo-item" onclick="openModal(this)"><img src="img4.jpg" alt="Hegaz"></div>
-        <div class="photo-item" onclick="openModal(this)"><img src="img5.jpg" alt="Hegaz"></div>
-        <div class="photo-item" onclick="openModal(this)"><img src="img6.jpg" alt="Hegaz"></div>
-        <!-- أضف المزيد هنا... -->
+    <h2 class="section-title" id="galleryTitle">PHOTO GALLERY | معرض الصور</h2>
+    <div class="photo-grid">
+        <!-- 2. Lazy loading مدمج هنا تلقائياً -->
+        <div class="photo-item" onclick="openImg(this)"><img src="pic1.jpg" loading="lazy"><div class="photo-info">Premium Alfalfa | برسيم درجة أولى</div></div>
+        <div class="photo-item" onclick="openImg(this)"><img src="pic2.jpg" loading="lazy"><div class="photo-info">Weight: 25KG | وزن ٢٥ كيلو</div></div>
+        <div class="photo-item" onclick="openImg(this)"><img src="pic3.jpg" loading="lazy"><div class="photo-info">Global Export | تصدير عالمي</div></div>
     </div>
 </section>
 
-<!-- قسم الفيديوهات المستقل -->
-<section>
-    <h2 class="section-title">VIDEOS | قسم الفيديوهات</h2>
-    <div class="video-section">
-        
-        <div class="video-box">
-            <div class="video-label">جولة داخل مخازن الشركة</div>
-            <div class="video-wrapper">
-                <video controls muted>
-                    <source src="storage-video.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-
-        <div class="video-box">
-            <div class="video-label">تجهيز الشحنات الدولية</div>
-            <div class="video-wrapper">
-                <video controls muted>
-                    <source src="shipping-video.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-
+<!-- فيديوهات الواجهة في نهاية الموقع -->
+<h2 class="section-title" id="videoTitle">LIVE OPERATIONS | بث حي للعمليات</h2>
+<div class="video-showcase">
+    <div class="video-box">
+        <div class="video-label" id="v1Label">Storage Tour | جولة بالمخازن</div>
+        <div class="video-frame"><video autoplay muted loop playsinline><source src="v1.mp4" type="video/mp4"></video></div>
     </div>
-</section>
-
-<!-- نافذة عرض الصورة (تفتح عند الضغط) -->
-<div id="myModal" class="modal">
-    <span class="close-modal" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="imgModal">
+    <div class="video-box">
+        <div class="video-label" id="v2Label">Global Shipping | شحن دولي</div>
+        <div class="video-frame"><video autoplay muted loop playsinline><source src="v2.mp4" type="video/mp4"></video></div>
+    </div>
 </div>
 
-<a href="https://api.whatsapp.com/send?phone=201145040429" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
+<div id="imgModal" class="modal" onclick="this.style.display='none'">
+    <img class="modal-content" id="fullImg">
+</div>
 
-<footer>HEGAZ GLOBAL &copy; 2026</footer>
+<a href="https://api.whatsapp.com/send?phone=201145040429" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<footer>HEGAZ GLOBAL &copy; 2026 | DAMIETTA, EGYPT</footer>
 
 <script>
-    function openModal(element) {
-        document.getElementById("myModal").style.display = "block";
-        document.getElementById("imgModal").src = element.getElementsByTagName('img')[0].src;
+    function openImg(el) {
+        document.getElementById("imgModal").style.display = "block";
+        document.getElementById("fullImg").src = el.querySelector('img').src;
     }
-    function closeModal() {
-        document.getElementById("myModal").style.display = "none";
-    }
-    // إغلاق النافذة عند الضغط في أي مكان خارج الصورة
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("myModal")) {
-            closeModal();
+
+    // 1. وظيفة تبديل اللغة البسيطة
+    function switchLang(lang) {
+        const html = document.getElementById('mainHtml');
+        if(lang === 'en') {
+            html.dir = 'ltr';
+            document.getElementById('heroTitle').innerText = 'HEGAZ GLOBAL COMPANY';
+            document.getElementById('galleryTitle').innerText = 'PRODUCT GALLERY';
+            document.getElementById('videoTitle').innerText = 'LIVE OPERATIONS';
+        } else {
+            html.dir = 'rtl';
+            document.getElementById('heroTitle').innerText = 'شركة حجاز العالمية';
+            document.getElementById('galleryTitle').innerText = 'معرض المنتجات';
+            document.getElementById('videoTitle').innerText = 'بث حي للعمليات';
         }
     }
 </script>
-
 </body>
 </html>
