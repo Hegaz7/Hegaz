@@ -19,6 +19,9 @@
         section { padding: 60px 8%; border-top: 1px solid #111; }
         .section-title { text-align: center; color: var(--gold); letter-spacing: 5px; margin-bottom: 40px; font-size: 1.8rem; text-transform: uppercase; }
 
+        /* الأقسام - العنوان فوق الخانة */
+        .box-label { padding-bottom: 15px; text-align: center; color: var(--gold); font-size: 1.4rem; font-weight: bold; letter-spacing: 2px; }
+
         /* قسم الشهادات */
         .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
         .cert-item { border: 1px solid var(--gold); padding: 30px; background: rgba(197, 160, 89, 0.03); text-align: center; }
@@ -31,10 +34,9 @@
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
         .gallery-item:hover img { opacity: 1; }
 
-        /* العمليات - العنوان فوق الخانة */
+        /* العمليات اللوجستية */
         .ops-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 50px; }
         .op-container { display: flex; flex-direction: column; }
-        .op-label { padding-bottom: 15px; text-align: center; color: var(--gold); font-size: 1.4rem; font-weight: bold; letter-spacing: 2px; }
         .media-box { width: 100%; height: 400px; overflow: hidden; background: #000; border: 1px solid #1a1a1a; }
         .media-box video, .media-box img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -57,13 +59,12 @@
 </header>
 
 <div class="hero">
-    <!-- الصورة المرفوعة في مستودع GitHub -->
     <img src="hegaz.png" alt="Hegaz Brand">
     <h1>HEGAZ GROUP</h1>
     <p>FROM EGYPT TO THE WORLD</p>
 </div>
 
-<!-- 1. قسم الشهادات -->
+<!-- الشهادات -->
 <section>
     <h2 class="section-title">CERTIFICATIONS | الشهادات</h2>
     <div class="certs-grid">
@@ -82,36 +83,35 @@
     </div>
 </section>
 
-<!-- 2. قسم معرض الصور -->
+<!-- معرض الصور -->
 <section>
     <h2 class="section-title">PHOTO GALLERY | معرض الصور</h2>
     <div class="gallery-grid">
-        <div class="gallery-item"><img src="pic1.jpg" alt="Gallery 1"></div>
-        <div class="gallery-item"><img src="pic2.jpg" alt="Gallery 2"></div>
-        <div class="gallery-item"><img src="pic3.jpg" alt="Gallery 3"></div>
-        <div class="gallery-item"><img src="pic4.jpg" alt="Gallery 4"></div>
+        <div class="gallery-item"><img src="pic1.jpg" alt="Gallery"></div>
+        <div class="gallery-item"><img src="pic2.jpg" alt="Gallery"></div>
+        <div class="gallery-item"><img src="pic3.jpg" alt="Gallery"></div>
+        <div class="gallery-item"><img src="pic4.jpg" alt="Gallery"></div>
     </div>
 </section>
 
-<!-- 3. قسم العمليات اللوجستية (العناوين فوق الخانات) -->
-<section id="ops">
+<!-- العمليات اللوجستية -->
+<section>
     <h2 class="section-title">OPERATIONS | العمليات اللوجستية</h2>
     <div class="ops-grid">
         
-        <!-- جولة داخل المخازن -->
+        <!-- جولة المخازن -->
         <div class="op-container">
-            <div class="op-label">جولة داخل مخازن الشركة</div>
+            <div class="box-label">جولة داخل مخازن الشركة</div>
             <div class="media-box">
                 <video autoplay muted loop playsinline>
                     <source src="storage-video.mp4" type="video/mp4">
-                    متصفحك لا يدعم الفيديو.
                 </video>
             </div>
         </div>
 
-        <!-- تجهيز الشحنات الدولية -->
+        <!-- تجهيز الشحنات -->
         <div class="op-container">
-            <div class="op-label">تجهيز الشحنات الدولية</div>
+            <div class="box-label">تجهيز الشحنات الدولية</div>
             <div class="media-box">
                 <img src="warehouse1.jpg" alt="Shipping Logistics">
             </div>
@@ -120,12 +120,10 @@
     </div>
 </section>
 
-<!-- قسم التواصل عبر الإيميل -->
 <div style="text-align: center; padding: 60px 0;">
     <a href="mailto:info@hegazgroup.com" style="border: 2px solid var(--gold); color: var(--gold); padding: 20px 60px; text-decoration: none; font-weight: bold; letter-spacing: 3px; font-size: 1.2rem;">SEND EMAIL | إرسال بريد إلكتروني</a>
 </div>
 
-<!-- زر الواتساب العائم -->
 <a href="https://api.whatsapp.com/send?phone=201145040429" class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
